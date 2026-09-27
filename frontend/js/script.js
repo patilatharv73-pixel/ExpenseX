@@ -1,8 +1,10 @@
+const API_BASE_URL = "https://expensex-aw2n.onrender.com";
 // =================================
 // AUTHENTICATION CHECK
 // =================================
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("expenseXToken");
+
 
 if (!token) {
     window.location.href = "pages/login.html";
@@ -69,7 +71,7 @@ async function loadTransactionsFromAPI() {
        const token = localStorage.getItem("expenseXToken");
 
 const response = await fetch(
-    "http://localhost:5000/api/transactions",
+    `${API_BASE_URL}/api/transactions`,
     {
         headers: {
             "Authorization": `Bearer ${token}`
@@ -131,7 +133,7 @@ async function saveTransactionToAPI(transaction) {
        const token = localStorage.getItem("expenseXToken");
 
 const response = await fetch(
-    "http://localhost:5000/api/transactions",
+   `${API_BASE_URL}/api/transactions`,
     {
         method: "POST",
 
@@ -321,7 +323,7 @@ async function editTransaction(transaction) {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/api/transactions/${transaction._id}`,
+         `${API_BASE_URL}/api/transactions/${transaction._id}`,
             {
                 method: "PUT",
 
@@ -378,7 +380,7 @@ async function deleteTransaction(id) {
         const token = localStorage.getItem("expenseXToken");
 
 const response = await fetch(
-    `http://localhost:5000/api/transactions/${id}`,
+   `${API_BASE_URL}/api/transactions/${id}`,
     {
         method: "DELETE",
 
@@ -937,19 +939,5 @@ if (logoutButton) {
 
         window.location.href =
             "pages/login.html";
-    });
-}
-// =================================
-// LOGOUT
-// =================================
-
-const logoutButton = document.getElementById("logoutButton");
-
-if (logoutButton) {
-    logoutButton.addEventListener("click", function () {
-
-        localStorage.removeItem("expenseXToken");
-
-        window.location.href = "pages/login.html";
     });
 }

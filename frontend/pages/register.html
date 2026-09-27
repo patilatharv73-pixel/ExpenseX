@@ -155,6 +155,7 @@
 
 
     <script>
+        const API_BASE_URL = "https://expensex-aw2n.onrender.com";
 
         const registerForm =
             document.getElementById("registerForm");
@@ -185,7 +186,7 @@
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/api/auth/register",
+                  `${API_BASE_URL}/api/auth/register`,
                     {
                         method: "POST",
 

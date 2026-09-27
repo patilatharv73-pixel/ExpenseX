@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">₹</div>
+            <div>
+                <h2>ExpenseX</h2>
+                <span>Money Manager</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="#" class="nav-link active">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="#transactions" class="nav-link">
+                <span>↕</span>
+                Transactions
+            </a>
+
+            <a href="#analytics" class="nav-link">
+                <span>◉</span>
+                Analytics
+            </a>
+
+           <a href="#settings" class="nav-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>ExpenseX</p>
+            <small>Track. Save. Grow.</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="welcome-text">Welcome back 👋</p>
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">A</div>
+                <div>
+                    <strong>Atharv</strong>
+                    <small>Student</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- SUMMARY CARDS -->
+        <section class="summary-grid">
+
+            <div class="summary-card balance-card">
+
+                <div class="card-top">
+                    <span>Total Balance</span>
+                    <div class="card-icon">₹</div>
+                </div>
+
+                <h2 id="balance">₹0</h2>
+
+                <p class="positive">
+                    Available balance
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-top">
+                    <span>Total Income</span>
+                    <div class="card-icon income-icon">↗</div>
+                </div>
+
+                <h2 id="income">₹0</h2>
+
+                <p>Money received</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-top">
+                    <span>Total Expenses</span>
+                    <div class="card-icon expense-icon">↘</div>
+                </div>
+
+                <h2 id="expenses">₹0</h2>
+
+                <p>Money spent</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-top">
+                    <span>This Month</span>
+                    <div class="card-icon">◷</div>
+                </div>
+
+                <h2 id="monthlyExpense">₹0</h2>
+
+                <p>Monthly spending</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN GRID -->
+        <section class="dashboard-grid">
+
+            <!-- ADD TRANSACTION -->
+            <div class="panel transaction-form-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Add Transaction</h2>
+                        <p>Record your income or expense</p>
+                    </div>
+
+                </div>
+
+
+                <form id="transactionForm">
+
+                    <div class="form-group">
+
+                        <label>Transaction Type</label>
+
+                        <div class="type-buttons">
+
+                            <button
+                                type="button"
+                                class="type-btn active"
+                                data-type="expense">
+                                Expense
+                            </button>
+
+                            <button
+                                type="button"
+                                class="type-btn"
+                                data-type="income">
+                                Income
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="title">
+                            Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            placeholder="e.g. College canteen"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                                Amount
+                            </label>
+
+                            <input
+                                type="number"
+                                id="amount"
+                                placeholder="0"
+                                min="1"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Category
+                            </label>
+
+                            <select id="category">
+
+                                <option value="Food">
+                                    Food
+                                </option>
+
+                                <option value="Travel">
+                                    Travel
+                                </option>
+
+                                <option value="Shopping">
+                                    Shopping
+                                </option>
+
+                                <option value="Education">
+                                    Education
+                                </option>
+
+                                <option value="Bills">
+                                    Bills
+                                </option>
+
+                                <option value="Entertainment">
+                                    Entertainment
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="add-btn">
+
+                        + Add Transaction
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- CHART -->
+            <div id="analytics" class="panel chart-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Expense Overview</h2>
+                        <p>Your spending by category</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="expenseChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRANSACTIONS -->
+        <section id="transactions" class="panel transactions-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Recent Transactions</h2>
+                    <p>Your latest financial activity</p>
+                </div>
+
+                <button class="view-all">
+                    View All
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Transaction</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="transactionList">
+
+                        <tr class="empty-row">
+
+                            <td colspan="5">
+                                No transactions yet.
+                                Add your first transaction above.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+        </section>
+
+<!-- SETTINGS -->
+<section id="settings" class="panel">
+    <div class="panel-header">
+        <div>
+            <h2>Settings</h2>
+            <p>Manage your ExpenseX preferences</p>
+        </div>
+    </div>
+
+    <div class="settings-content">
+        <h3>Account</h3>
+        <p>Student</p>
+        <button type="button" id="logoutButton">
+    Logout
+</button>
+
+        <h3>Currency</h3>
+       <select id="currencySelect">
+    <option value="₹">Indian Rupee (₹)</option>
+    <option value="$">US Dollar ($)</option>
+    <option value="€">Euro (€)</option>
+    <option value="£">British Pound (£)</option>
+</select>
+        <h3>Theme</h3>
+        <button type="button">Light Mode</button>
+        <h3>Account</h3>
+
+<button
+    type="button"
+    id="logoutButton"
+>
+    Logout
+</button>
+    </div>
+</section>
+
+</main>
+
+
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

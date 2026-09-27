@@ -58,6 +58,6 @@ app.get("/", (req, res) => {
 // START SERVER
 // =========================
 
-app.listen(PORT, () => {
-    console.log(`ExpenseX Backend running at http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`ExpenseX Backend running on port ${PORT}`);
 });

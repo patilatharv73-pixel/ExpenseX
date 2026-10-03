@@ -155,7 +155,7 @@
 
 
     <script>
-        const API_BASE_URL = "http://https://expensex-java.onrender.com:5000";
+        const API_BASE_URL = "https://expensex-java.onrender.com";
 
         const registerForm =
             document.getElementById("registerForm");
@@ -186,7 +186,7 @@
             try {
 
                 const response = await fetch(
-                 "http://https://expensex-java.onrender.com:5000/api/auth/register",
+                 "https://expensex-java.onrender.com/api/auth/login",
                     {
                         method: "POST",
 

@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "http://https://expensex-java.onrender.com:5000";
 // =================================
 // AUTHENTICATION CHECK
 // =================================

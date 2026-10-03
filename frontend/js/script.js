@@ -575,8 +575,6 @@ row.appendChild(actionCell);
 
 /* ---------- UPDATE SUMMARY ---------- */
 
-function updateSummary() {
-
 const exchangeRatesToINR = {
     "₹": 1,
     "$": 83,
@@ -587,6 +585,10 @@ const exchangeRatesToINR = {
 function toINR(amount, currency) {
     return Number(amount) * (exchangeRatesToINR[currency] || 1);
 }
+
+
+function updateSummary() {
+
 
 const displayCurrency =
     localStorage.getItem("expenseXCurrency") || "₹";
